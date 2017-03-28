@@ -13,31 +13,13 @@ import {
 import RemoteControl from './components/remoteControl';
 
 export default class rokuReactNativeRemoteControl extends Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-  handleClick(e) {
-    fetch('https://192.168.1.154:8060/keypress/Right', {
-      method: 'POST'
-    }).then(
-      response => {
-        console.log("Pressed");
-      }
-    ).catch(
-      error => {
-
-      }
-    )
-
-  }
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
           Roku Remote Control
         </Text>
-        <RemoteControl handleClick={this.handleClick} />
+        <RemoteControl />
       </View>
     );
   }
