@@ -4,32 +4,45 @@ import {
   View,
   Button
 } from 'react-native';
+import axios from 'axios';
 
 class RemoteControl extends Component {
+  constructor(props) {
+    super(props);
+    this.handleUp = this.handleUp.bind(this);
+    this.handleDown = this.handleDown.bind(this);
+    this.handleLeft = this.handleLeft.bind(this);
+    this.handleRight = this.handleRight.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
+    this.handleRemoteControl = this.handleRemoteControl.bind(this);
+  }
+  handleRemoteControl(event) {
+    axios.post('http://192.168.1.154:8060/keypress/'+event).then(
+      response => {
+        console.log("Response >>> ", response);
+      }
+    ).catch(
+      error => {
+        console.log("Error >>> ", error);
+      }
+    )
+  }
+  handleUp() {
+    this.handleRemoteControl('Up');
+  }
+  handleDown() {
+    this.handleRemoteControl('Down');
+  }
+  handleLeft() {
+    this.handleRemoteControl('Left');
+  }
+  handleRight() {
+    this.handleRemoteControl('Right');
+  }
+  handleSelect() {
+    this.handleRemoteControl('Select');
+  }
   render () {
-    constructor(props) {
-      super(props);
-      this.handleUp = this.handleUp.bind(this);
-      this.handleDown = this.handleDown.bind(this);
-      this.handleLeft = this.handleLeft.bind(this);
-      this.handleRight = this.handleRight.bind(this);
-      this.handleSelect = this.handleSelect.bind(this);
-    }
-    handleUp() {
-      
-    }
-    handleDown() {
-
-    }
-    handleLeft() {
-
-    }
-    handleRight() {
-
-    }
-    handleSelect() {
-
-    }
     return(
       <View style={styles.container}>
         <Button style={styles.button} name="Up" title="Up" onPress={this.handleUp} />
