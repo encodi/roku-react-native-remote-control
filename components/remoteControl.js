@@ -15,6 +15,7 @@ class RemoteControl extends Component {
     this.handleRight = this.handleRight.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.handleBack = this.handleBack.bind(this);
+    this.handleHome = this.handleHome.bind(this);
     this.handleRemoteControl = this.handleRemoteControl.bind(this);
   }
   handleRemoteControl(event) {
@@ -46,20 +47,26 @@ class RemoteControl extends Component {
   handleBack() {
     this.handleRemoteControl('Back');
   }
+  handleHome() {
+    this.handleRemoteControl('Home');
+  }
   render () {
     return(
       <View style={styles.container}>
-        <Button style={styles.button} name="Up" title="Up" onPress={this.handleUp} />
+        <View style={styles.containerRowLeft}>
+          <Button style={styles.button} name="Back" title="Back" onPress={this.handleBack} />
+          <Button style={styles.button} name="Home" title="Home" onPress={this.handleHome} />
+        </View>
+        <View style={styles.containerRow}>
+          <Button style={styles.button} name="Up" title="Up" onPress={this.handleUp} />
+        </View>
         <View style={styles.containerRow}>
           <Button style={styles.button} name="Left" title="Left" onPress={this.handleLeft} />
+          <Button style={styles.button} name="Select" title="Select" onPress={this.handleSelect} />
           <Button style={styles.button} name="Right" title="Right" onPress={this.handleRight} />
         </View>
         <View style={styles.containerRow}>
           <Button style={styles.button} name="Down" title="Down" onPress={this.handleDown} />
-        </View>
-        <View style={styles.containerRow}>
-          <Button style={styles.button} name="Select" title="Select" onPress={this.handleSelect} />
-          <Button style={styles.button} name="Back" title="Back" onPress={this.handleBack} />
         </View>
       </View>
     );
@@ -67,20 +74,21 @@ class RemoteControl extends Component {
 }
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignItems: 'center'
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   containerRow: {
-    flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  containerRowLeft: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start'
   },
   button: {
-    width: 50,
-    height: 50
   }
 });
 
